@@ -1,55 +1,50 @@
-# Lab 3 - General Hospital E-R Diagram
+# Lab 3 – SQL Practice: DDL, DML, and DQL
 
-## Problem Description
+## Overview
+This lab focuses on practicing SQL through three major types of queries:
 
-Design an E-R diagram for a general hospital system based on the following scenario:
+- **DDL (Data Definition Language)** – Creating a new database and tables for a hospital system.
+- **DML (Data Manipulation Language)** – Inserting and updating records in the `Company_SD` database.
+- **DQL (Data Query Language)** – Retrieving meaningful insights from the `Company_SD` database.
 
-### Requirements:
+The goal is to reinforce understanding of SQL syntax and how to manipulate and retrieve data effectively in real-world business and healthcare scenarios.
 
-- The hospital consists of a number of specialized **wards**.  
-  **Ward attributes:**  
-  - `ward_id`  
-  - `name`
+---
 
-- The system records the following details about **patients**:  
-  - `patient_id`  
-  - `name`  
-  - `date_of_birth`
+## Lab Tasks
 
-- Each **ward** may host one or more patients.  
-  Each **patient** is hosted by **only one** ward.
+### 1. DDL (Data Definition Language)
+**1.1** Create a new database named `hospital` and define basic tables for:
+- Patients
+- Doctors
+- Appointments
 
-- Each **patient** is assigned to **one leading consultant**, but may also be **examined by other consultants** as needed.
+---
 
-- Each **consultant** may:
-  - Be assigned to **zero or more** patients  
-  - Examine **zero or more** patients  
-  **Consultant attributes:**  
-  - `consultant_id`  
-  - `name`
+### 2. DML (Data Manipulation Language) – Use `Company_SD` database
+**2.1** Insert your own personal data into the `employee` table as a new employee in department number 30, with:
+- SSN = 102672
+- Superssn = 112233
+- Salary = 3000
 
-- The system must record all necessary data **each time a nurse gives a patient a certain drug**, including:
-  - **Drug**
-  - **Dosage**
-  - **Date and time**
+**2.2** Insert your friend's personal data into the `employee` table with:
+- SSN = 102660
+- Department = 30
+- No value for salary or manager number (NULL)
 
-- Each **ward** is supervised by **one nurse**, and each **nurse** supervises **only one ward**.  
-  Each **nurse** must serve in one ward.
+**2.3** Update your salary by increasing it by 20%.
 
-  **Nurse attributes:**  
-  - `nurse_name`  
-  - `nurse_number`  
-  - `address`
+---
 
-- **Drugs** are described by:  
-  - `code_number`  
-  - `recommended_dosage`  
-  - Multiple `brand_names`
-
-## Task
-
-Design an **Entity-Relationship (E-R) diagram** that captures the structure and constraints of the hospital system. Be sure to:
-
-- Define all entities and their attributes  
-- Represent relationships, including cardinality and participation  
-- Highlight any assumptions you make
+### 3. DQL (Data Query Language) – Use `Company_SD` database
+**3.1** Display all data from the employee table.  
+**3.2** Show employee first name, last name, salary, and department number.  
+**3.3** List all project names, locations, and department IDs responsible.  
+**3.4** Display each employee's full name and annual commission (10% of annual salary).  
+**3.5** Find employees earning more than 5000 LE monthly.  
+**3.6** Display names and salaries of female employees.  
+**3.7** Show department ID and name managed by manager with ID = 968574.  
+**3.8** List projects controlled by department 10.  
+**3.9** Show projects located in Cairo or Alex.  
+**3.10** Display full data of projects with names starting with letter ‘a’.  
+**3.11** Find employees in department 30 with salaries between 1000 and 2000 LE.
