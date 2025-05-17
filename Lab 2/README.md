@@ -1,43 +1,80 @@
-# Lab 2 - Real Estate Firm E-R Diagram
+# Lab 2 – Entity-Relationship Modeling (Advanced Scenarios)
 
-## Problem Description
+## Overview
+This lab involves the creation of Entity-Relationship (ER) diagrams for two complex organizational systems: a **General Hospital** and an **Airline Management System**. The objective is to analyze, extract, and model all required entities, attributes, and relationships for database design.
 
-Prepare an E-R diagram for a real estate firm that lists properties for sale. The following describes this organization:
+---
 
-### Requirements:
+## Problem 3: General Hospital Database System
 
-- The firm has a number of sales offices in several states.  
-  **Attributes of sales office:**  
-  - Office_Number  
-  - Location
+### Description
+A general hospital manages information about wards, patients, consultants, nurses, drugs, and medical activities such as drug administration.
 
-- Each sales office is assigned one or more employees.  
-  **Attributes of employee:**  
-  - Employee_ID  
-  - Employee_Name  
-  - An employee must be assigned to only one sales office.
+### Identified Entities
+- **Ward**
+  - `Ward_ID` (PK), `Name`
 
-- For each sales office, there is always one employee assigned to manage that office.
+- **Patient**
+  - `Patient_ID` (PK), `Name`, `Date_Of_Birth`
 
-- The firm lists properties for sale.  
-  **Attributes of property:**  
-  - Property_ID  
-  - Location (includes Address, City, State, Zip_Code)
+- **Consultant**
+  - `Consultant_ID` (PK), `Name`
 
-- Each property must be listed with one (and only one) sales office.  
-  A sales office may have any number of properties listed or none.
+- **Nurse**
+  - `Nurse_ID` (PK), `Name`, `Number`, `Address`
 
-- Each property may have zero or more owners.  
-  **Attributes of owners:**  
-  - Owner_ID  
-  - Owner_Name  
-  - The system stores the percent owned by each owner in each property.
+- **Drug**
+  - `Code` (PK), `Recommended_Dosage`, `Brand_Name` (Multi-valued attribute)
 
-## Task
+### Relationships
+- **Hosts**: 1:N from Ward to Patient
+- **Assigned_To**: 1:1 from Patient to Leading Consultant
+- **Examines**: M:N between Consultant and Patient
+- **Supervises**: 1:1 between Nurse and Ward
+- **Serves**: 1:1 between Nurse and Ward
+- **Administers**: Ternary relationship between Nurse, Patient, and Drug with attributes: `Dosage`, `Date_Time`
 
-Design an **Entity-Relationship (E-R) diagram** that captures the above information. Be sure to indicate:
+---
 
-- All entity sets and attributes  
-- Relationship sets with cardinality constraints  
-- Keys and participation constraints  
-- Any assumptions you make
+## Problem 4: Airline Companies Database System
+
+### Description
+This database supports operations of multiple airline companies managing employees, aircraft, routes, transactions, and crew assignments.
+
+### Identified Entities
+- **Airline**
+  - `Airline_ID` (PK), `Name`, `Address`, `Contact_Person`, `Phone_Number`
+
+- **Employee**
+  - `Employee_ID` (PK), `Name`, `Address`, `Birth_Day`, `Birth_Month`, `Birth_Year`, `Gender`, `Position`, `Qualifications`
+
+- **Aircraft**
+  - `Aircraft_ID` (PK), `Model`, `Capacity`
+
+- **Route**
+  - `Route_ID` (PK), `Origin`, `Destination`, `Distance`, `Classification`
+
+- **Transaction**
+  - `Transaction_ID` (PK), `Date`, `Description`, `Amount`, `Type` (Buy/Sell)
+
+- **Crew**
+  - `Crew_ID` (PK), `Major_Pilot`, `Assistant_Pilot`, `Hostess1`, `Hostess2`
+
+### Relationships
+- **Owns**: 1:N from Airline to Aircraft
+- **Assigned_To**: M:N between Aircraft and Route with attributes:
+  - `Num_Passengers`, `Price_Per_Passenger`, `Departure_DateTime`, `Arrival_DateTime`, `Travel_Duration`
+- **Employs**: 1:N from Airline to Employee
+- **Assigned_Crew**: 1:1 between Crew and Aircraft
+- **Performs**: 1:N from Airline to Transaction
+
+---
+
+## Assumptions
+- Each patient has only one leading consultant but can be examined by many.
+- Nurses are uniquely assigned to supervise one ward and serve there.
+- Drugs may have multiple brand names.
+- Each airline manages its own employees and aircraft.
+- Routes may serve multiple aircraft and vice versa.
+- Each aircraft has one dedicated crew.
+- Transactions include both operational buys (e.g., maintenance) and sells (e.g., ticket sales).
